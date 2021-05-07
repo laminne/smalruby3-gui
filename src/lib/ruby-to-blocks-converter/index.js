@@ -27,6 +27,7 @@ import Wedo2Converter from './wedo2';
 import GdxForConverter from './gdx_for';
 import MeshConverter from './mesh';
 import SmalrubotS1Converter from './smalrubot_s1';
+import BoostConverter from './boost';
 
 const messages = defineMessages({
     couldNotConvertPremitive: {
@@ -87,6 +88,7 @@ class RubyToBlocksConverter {
             GdxForConverter,
             MeshConverter,
             SmalrubotS1Converter,
+            BoostConverter,
 
             MotionConverter,
             LooksConverter,
@@ -264,11 +266,11 @@ class RubyToBlocksConverter {
         });
     }
 
-    _callConvertersHandler (handlerName) {
+    _callConvertersHandler (handlerName, ...args) {
         for (let i = 0; i < this._converters.length; i++) {
             const converter = this._converters[i];
             if (converter.hasOwnProperty(handlerName)) {
-                const block = converter[handlerName].apply(this, Array.prototype.slice.call(arguments, 1));
+                const block = converter[handlerName].apply(this, args);
                 if (block) {
                     return block;
                 }

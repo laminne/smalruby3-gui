@@ -6,7 +6,7 @@
     <meta name="google" value="notranslate">
     <%
         const originTrials = htmlWebpackPlugin.options.originTrials;
-        if (originTrials) {
+        if (originTrials && Object.keys(originTrials).length > 0) {
     %>
     <!-- Chrome Origin Trials: https://developers.chrome.com/origintrials -->
     <%
